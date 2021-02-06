@@ -1,0 +1,186 @@
+* {
+  font-family: "Quicksand", sans-serif;
+}
+
+.navbar-brand {
+  font-family: "Quicksand", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.custom-nav .custom-nav-item a {
+  color: #ffffff !important;
+}
+.custom-nav-item:hover {
+  background-color: rgba(116, 128, 151, 0.787);
+  border: solid rgb(197, 179, 179) 1px;
+  border-radius: 15px;
+  padding: 1px;
+}
+
+.navbar-dark .navbar-text {
+  width: 225px;
+}
+.navbar-nav {
+  padding: 0 0 0 20px;
+}
+
+.remove-vid-margin {
+  margin: 0px;
+  padding: 0;
+}
+
+.vid-parent {
+  position: relative;
+}
+
+video {
+  width: 100%;
+}
+
+.vid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(144 146 135 / 55%);
+  opacity: 0.9;
+}
+
+.vid-overlay1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 63.4%;
+  width: 100%;
+  background-color: rgb(144 146 135 / 55%);
+  opacity: 0.9;
+}
+
+.vid-content {
+  position: absolute;
+  z-index: 2;
+  top: 35%;
+  left: 35%;
+  text-align: center;
+}
+
+.bottom-banner {
+  color: #ffffff;
+  padding: 10px 0 3px 10px;
+  margin-left: 10px;
+}
+
+.bottom-banner div {
+  padding-left: 25px;
+}
+.bottom-banner div h6 {
+  padding-left: 45px;
+  justify-content: center;
+}
+
+#wrap {
+  padding: 0;
+  position: static;
+}
+
+#wrap input[type="text"] {
+  height: 50px;
+  font-size: 20px;
+  display: inline-block;
+
+  font-weight: 100;
+  border: none;
+  outline: none;
+  color: rgb(214, 214, 214);
+  padding: 3px;
+  padding-right: 40px;
+  width: 0px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  z-index: 3;
+  transition: width 0.4s cubic-bezier(0, 0.795, 0, 1);
+  cursor: pointer;
+}
+
+#wrap input[type="text"]:focus:hover {
+  border-bottom: 1px solid #bbb;
+}
+
+#wrap input[type="text"]:focus {
+  width: 320px;
+  z-index: 1;
+  border-bottom: 1px solid rgb(194, 189, 189);
+  cursor: text;
+}
+
+#wrap input[type="submit"] {
+  height: 57px;
+  width: 63px;
+  display: inline-block;
+  color: red;
+  background: url(https://www.freepnglogos.com/uploads/search-png/search-icon-transparent-images-vector-16.png)
+    center center no-repeat;
+  text-indent: -10000px;
+  border: none;
+  position: absolute;
+  top: 0;
+  background-size: 35px;
+  right: 0;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity 0.4s ease;
+}
+
+#wrap input[type="submit"]:hover {
+  opacity: 0.8;
+}
+
+@media screen and (min-width: 0px) and (max-width: 720px) {
+  .my-content,
+  .txt-banner {
+    display: none;
+  }
+
+  .vid-content {
+    top: 12%;
+    left: 60%;
+  }
+
+  #wrap {
+    display: none;
+  }
+}
+
+.float-right {
+  float: right;
+}
+.social-hover {
+  text-decoration: none;
+}
+.social-hover:hover {
+  background-color: rgba(65, 61, 57, 0.787);
+  padding: 6px 20% 6px 20%;
+}
+
+.font-weight-bolder {
+  font-weight: 550;
+}
+
+.stripe {
+  padding: 3rem;
+  height: 14rem;
+  margin-top: 0px;
+  border-radius: 5px;
+  border: thick double #84959c;
+  z-index: -5;
+}
+.form-students .icon {
+  color: #8aa2ac;
+}
