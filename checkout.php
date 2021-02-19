@@ -34,8 +34,66 @@ if (!isset($_SESSION['stuLoginEmail'])){
               }, 1500) </script>";
           }
       }
+      $sql_name = "SELECT * FROM student WHERE stu_email = '".$stuEmail."'";
+      $result = $conn->query($sql_name);
+      $row_name = $result->fetch_assoc();
+      $name_stu = $row_name["stu_name"];
+      $correo_estu = $_SESSION['stuLoginEmail'];
   }
 ?>
+
+<?php
+   
+   require 'src/Exception.php';
+     require 'src/PHPMailer.php';
+     require 'src/SMTP.php';
+    // $correo = $_POST["para"];
+     if (isset($correo_estu)) {
+         $correo = $correo_estu;
+     
+       
+    // $mensaje = $_POST["mensaje"];
+  
+     $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+ 
+     try {
+         //Server settings
+         $mail->SMTPDebug = 0;                                       // Enable verbose debug output
+         $mail->isSMTP();                                            // Set mailer to use SMTP
+         $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+         $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+         $mail->Port       = 587;                                    // TCP port to connect to
+     
+         
+         //https://support.google.com/mail/answer/185833?hl=es-419 POR ACA INGRESAN PARA CREAR LA CLAVE DE LA APP
+         $mail->Username   = 'cavishomestore@gmail.com';                     // SMTP username
+         $mail->Password   = 'wkflqbdqolkvupnf';                               // SMTP password
+   
+         //Recipients
+         $mail->setFrom('cavishomestore@gmail.com', 'MB-Learning'); 
+         
+         //La siguiente linea, se repite N cantidad de veces como destinarios tenga
+         $mail->addAddress($correo, $correo);     // Add a recipient
+    
+         
+         // Content
+         $mail->isHTML(true);                                  // Set email format to HTML
+         $mail->Subject = 'Compra Registrada';
+       //  $mail->Body    = $mensaje;
+           $mail->Body    = "<p><strong> Señor(a) ".$name_stu.", <br>Tu compra ha sido registrada con exito! <br><strong>Curso: </strong>".$_SESSION['nombre_curso']."<br></strong><strong>Duraccion: </strong>".$_SESSION['duracion_curso']." <br><strong>Instructor: </strong>".$_SESSION['autor_curso']."<br><strong>Monto: </strong>$".$_SESSION['monto_curso']."</p><hr><p style='color: #697ab7; font-size:14pt;'>Gracias por inscribirte al curso <strong>".$_SESSION['nombre_curso']."</strong>.</p><br><img src='https://www.mediafire.com/convkey/b862/kjm7p691s4t65r66g.jpg'><br> <p style='color: grey; font-size:12pt'>";
+        
+         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+         $mail->send();
+ 
+         echo 'Message has been sent';
+ 
+     } catch (Exception $e) {
+         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+     }
+     }
+     
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,7 +164,7 @@ if (!isset($_SESSION['stuLoginEmail'])){
 <div class='checkout'>
   <div class='order'>
     <h2>Checkout</h2>
-    <h4>Order # <?php echo  "ORD" . rand(10000,99999999)?></h4>
+    <h4>Order # <?php echo "ORD" . rand(10000,99999999)?></h4>
     <br>
     <img width="200px" src='<?php echo (isset($_POST['course_img'])) ? $_POST['course_img'] : '' ?>'>
       <h4>Producto: <?php echo (isset($_POST['course_name'])) ? $_POST['course_name'] : '' ?></h4>
@@ -227,12 +285,12 @@ if (!isset($_SESSION['stuLoginEmail'])){
             
                 <!-- <input type="submit" value="Pagar" class="btn btn-primary"> -->
       <button name="payLessonBtn" class='button-cta' title='Confirm your purchase'><span>COMPRAR</span></button>
+            <input type="hidden" name="para" value="<?php echo $stuEmail ?>">
       </form>
     </div>
   </div>
 
 </div>
-<a href="./courses.php">CancelaR</a>
 </body>
 </html>
 <?php }?> 

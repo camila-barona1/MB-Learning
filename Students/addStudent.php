@@ -49,6 +49,7 @@ if (!isset($_SESSION['is_login'])) {
         if ($row ===1) {
             $_SESSION['is_login'] = true;
             $_SESSION['stuLoginEmail'] = $stuLoginEmail;
+            
             echo json_encode($row);
         }else if($row ===0){
             echo json_encode($row);

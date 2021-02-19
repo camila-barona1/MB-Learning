@@ -35,6 +35,10 @@
         $sql = "SELECT * FROM course WHERE course_id = '$course_id'";
         $result = $conn->query($sql);
         $row =  $result->fetch_assoc();
+        $_SESSION['nombre_curso'] = $row["course_name"];
+        $_SESSION['duracion_curso'] = $row["course_duration"];
+        $_SESSION['autor_curso'] = $row["course_author"];
+        $_SESSION['monto_curso'] = $row["course_price"];
 
     }
     ?>
